@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:worker_app/api/controllers/users_api_controller.dart';
-import 'package:worker_app/models/base_response.dart';
 import 'package:worker_app/screens/auth/register_service_screen.dart';
-import 'package:worker_app/screens/main_screen.dart';
 import 'package:worker_app/screens/service_screen.dart';
 import 'package:worker_app/utils/helpers.dart';
 
@@ -22,7 +20,8 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
   TextEditingController _phoneTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _passwordTextController = TextEditingController();
-  PhoneNumber? _phoneNumber;
+
+  // PhoneNumber? _phoneNumber;
   String? _errorEmail;
   String? _errorPassword;
   bool isChecked = false;
@@ -60,7 +59,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
         body: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -73,7 +72,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
             ),
             Column(
               children: [
-                SizedBox(height: 85),
+                const SizedBox(height: 85),
                 Image.asset(
                   'assets/images/layer2.png',
                   alignment: Alignment.centerRight,
@@ -82,8 +81,8 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                   child: Stack(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 39.0),
-                        decoration: BoxDecoration(
+                        margin: const EdgeInsets.only(top: 39.0),
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(40),
@@ -91,16 +90,16 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                           ),
                         ),
                         child: ListView(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 0),
                           children: [
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             TabBar(
                               indicatorWeight: 5.0,
                               indicatorSize: TabBarIndicatorSize.label,
                               // جعل طول الخط يمتد عبر عرض التابات
 
-                              indicator: BoxDecoration(
+                              indicator: const BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
                                     color: Color(0xff0E4DFB), // لون الخط
@@ -110,13 +109,13 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                               ),
                               controller: _tabController,
                               labelColor: Colors.blue,
-                              unselectedLabelColor: Color(0xff646781),
+                              unselectedLabelColor: const Color(0xff646781),
                               onTap: (int value) {
                                 setState(() {
                                   _tabIndex = value;
                                 });
                               },
-                              tabs: [
+                              tabs: const [
                                 Tab(
                                   text: 'Service provider',
                                 ),
@@ -136,7 +135,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                   visible: _tabIndex == 0,
                                   child: Column(
                                     children: [
-                                      SizedBox(height: 47),
+                                      const SizedBox(height: 47),
                                       Form(
                                         key: _formKey,
                                         child: Column(
@@ -220,105 +219,13 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                         .withOpacity(0.5),
                                                     spreadRadius: 2.0,
                                                     blurRadius: 5.0,
-                                                    offset: Offset(0,
+                                                    offset: const Offset(0,
                                                         3), // التحكم في اتجاه ومقدار الظل
                                                   ),
                                                 ],
                                                 border: Border.all(
-                                                  color: Color(0xff6236FF),
-                                                  width: 0.5,
-                                                ),
-                                                borderRadius:
-                                                BorderRadius.circular(5.0),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                _emailTextController,
-                                                onChanged: (String value) {
-                                                  print('valu: $value');
-                                                },
-                                                obscureText: false,
-                                                keyboardType: TextInputType
-                                                    .emailAddress,
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black),
-                                                decoration: InputDecoration(
-                                                  contentPadding:
-                                                  EdgeInsets.symmetric(
-                                                      vertical: 10,
-                                                      horizontal: 21.5),
-                                                  labelText: 'Email',
-                                                  hintText: 'Android@gmail.com',
-                                                  hintStyle: TextStyle(
-                                                    color: Color(0xffC2CECE),
-                                                  ),
-                                                  alignLabelWithHint: true,
-                                                  errorText: _errorEmail,
-                                                  errorBorder:
-                                                  OutlineInputBorder(
-                                                    borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(
-                                                            10.0)),
-                                                    borderSide: BorderSide(
-                                                      width: 1,
-                                                    ),
-                                                  ),
-                                                  focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                    borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(
-                                                            10.0)),
-                                                    borderSide: BorderSide(
-                                                      width: 1,
-                                                    ),
-                                                  ),
-                                                  helperMaxLines: 2,
-                                                  helperStyle: TextStyle(
-                                                      color: Colors.blue),
-                                                  // prefixIcon: Icon(Icons.lock),
-                                                  enabledBorder:
-                                                  OutlineInputBorder(
-                                                    // borderRadius: BorderRadius.circular(10),
-                                                    borderSide: BorderSide(
-                                                      width: 1,
-                                                      color:
-                                                      Colors.grey.shade300,
-                                                    ),
-                                                  ),
-                                                  focusedBorder:
-                                                  OutlineInputBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        10),
-                                                    borderSide: BorderSide(
-                                                      width: 1,
-                                                      color:
-                                                      Colors.grey.shade300,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: 32.0),
-                                            Container(
-                                              height: 50,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.5),
-                                                    spreadRadius: 2.0,
-                                                    blurRadius: 5.0,
-                                                    offset: Offset(0,
-                                                        3), // التحكم في اتجاه ومقدار الظل
-                                                  ),
-                                                ],
-                                                border: Border.all(
-                                                  color: Color(0xff6236FF),
+                                                  color:
+                                                      const Color(0xff6236FF),
                                                   width: 0.5,
                                                 ),
                                                 borderRadius:
@@ -326,25 +233,31 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                               ),
                                               child: TextField(
                                                 controller:
-                                                    _passwordTextController,
+                                                    _emailTextController,
                                                 onChanged: (String value) {
                                                   print('valu: $value');
                                                 },
-                                                obscureText: true,
-                                                keyboardType: TextInputType
-                                                    .visiblePassword,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                obscureText: false,
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.black),
                                                 decoration: InputDecoration(
                                                   contentPadding:
-                                                      EdgeInsets.symmetric(
-                                                          vertical: 10),
-                                                  labelText: 'Password',
+                                                      const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 21.5),
+                                                  labelText: 'Email',
+                                                  hintText: 'Android@gmail.com',
+                                                  hintStyle: const TextStyle(
+                                                    color: Color(0xffC2CECE),
+                                                  ),
                                                   alignLabelWithHint: true,
-                                                  errorText: _errorPassword,
+                                                  errorText: _errorEmail,
                                                   errorBorder:
-                                                      OutlineInputBorder(
+                                                      const OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
@@ -354,7 +267,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                     ),
                                                   ),
                                                   focusedErrorBorder:
-                                                      OutlineInputBorder(
+                                                      const OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
@@ -364,7 +277,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                     ),
                                                   ),
                                                   helperMaxLines: 2,
-                                                  helperStyle: TextStyle(
+                                                  helperStyle: const TextStyle(
                                                       color: Colors.blue),
                                                   // prefixIcon: Icon(Icons.lock),
                                                   enabledBorder:
@@ -390,7 +303,97 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 41.5),
+                                            const SizedBox(height: 32.0),
+                                            Container(
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 2.0,
+                                                    blurRadius: 5.0,
+                                                    offset: const Offset(0,
+                                                        3), // التحكم في اتجاه ومقدار الظل
+                                                  ),
+                                                ],
+                                                border: Border.all(
+                                                  color:
+                                                      const Color(0xff6236FF),
+                                                  width: 0.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                              ),
+                                              child: TextField(
+                                                controller:
+                                                    _passwordTextController,
+                                                onChanged: (String value) {
+                                                  print('valu: $value');
+                                                },
+                                                obscureText: true,
+                                                keyboardType: TextInputType
+                                                    .visiblePassword,
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration: InputDecoration(
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10),
+                                                  labelText: 'Password',
+                                                  alignLabelWithHint: true,
+                                                  errorText: _errorPassword,
+                                                  errorBorder:
+                                                      const OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10.0)),
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                    ),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      const OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10.0)),
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                    ),
+                                                  ),
+                                                  helperMaxLines: 2,
+                                                  helperStyle: const TextStyle(
+                                                      color: Colors.blue),
+                                                  // prefixIcon: Icon(Icons.lock),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    // borderRadius: BorderRadius.circular(10),
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                      color:
+                                                          Colors.grey.shade300,
+                                                    ),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                      color:
+                                                          Colors.grey.shade300,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 41.5),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -405,7 +408,8 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                       colorConfig: MSHColorConfig
                                                           .fromCheckedUncheckedDisabled(
                                                         checkedColor:
-                                                            Color(0xff0E4DFB),
+                                                            const Color(
+                                                                0xff0E4DFB),
                                                       ),
                                                       style: style,
                                                       onChanged: (selected) {
@@ -414,15 +418,15 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                         });
                                                       },
                                                     ),
-                                                    SizedBox(width: 10),
-                                                    Text('Remember me',
+                                                    const SizedBox(width: 10),
+                                                    const Text('Remember me',
                                                         style: TextStyle(
                                                             fontSize: 12,
                                                             color: Color(
                                                                 0xff272727))),
                                                   ],
                                                 ),
-                                                Text(
+                                                const Text(
                                                   'Forgot Password?',
                                                   style: TextStyle(
                                                       fontSize: 15,
@@ -430,7 +434,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(height: 41.5),
+                                            const SizedBox(height: 41.5),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -440,7 +444,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text('New Member?',
+                                                    const Text('New Member?',
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             color: Color(
@@ -451,10 +455,10 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  RegisterServiceScreen(),
+                                                                  const RegisterServiceScreen(),
                                                             ));
                                                       },
-                                                      child: Text(
+                                                      child: const Text(
                                                         'SIGN UP',
                                                         style: TextStyle(
                                                           fontSize: 16,
@@ -480,7 +484,8 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
-                                                    gradient: LinearGradient(
+                                                    gradient:
+                                                        const LinearGradient(
                                                       begin:
                                                           AlignmentDirectional
                                                               .centerStart,
@@ -496,7 +501,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                     onPressed: () {
                                                       performLogin();
                                                     },
-                                                    child: Text('LOGIN'),
+                                                    child: const Text('LOGIN'),
                                                     style: ElevatedButton
                                                         .styleFrom(
                                                       backgroundColor:
@@ -520,12 +525,17 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                                     Alignment.bottomCenter,
                                                 child: TextButton.icon(
                                                   onPressed: () {
-                                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ServiceScreen(),));
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const ServiceScreen(),
+                                                        ));
                                                   },
-                                                  icon: Icon(
+                                                  icon: const Icon(
                                                       Icons.arrow_forward,
                                                       color: Color(0xff272727)),
-                                                  label: Text(
+                                                  label: const Text(
                                                     'Get Start Now',
                                                     style: TextStyle(
                                                         fontSize: 16,
@@ -546,7 +556,7 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
                                 Visibility(
                                   visible: _tabIndex == 1,
                                   child: Container(
-                                    child: Text('SIGN UP'),
+                                    child: const Text('SIGN UP'),
                                   ),
                                 ),
                               ],
@@ -567,8 +577,6 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
 
   Future<void> performLogin() async {
     if (checkeData()) {
-      showSnakeBar(
-          context: context, message: 'تسجيل دخول المستخدم بنجاح' , error: false);
       login();
     }
   }
@@ -587,13 +595,14 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
         password: _passwordTextController.text);
 
     if (status) {
-      Navigator.pushReplacementNamed(
-          context,
-          '/main_screen');
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/main_screen');
+      showSnakeBar(
+          context: context, message: 'تسجيل دخول المستخدم بنجاح', error: false);
     } else {
+      // ignore: use_build_context_synchronously
       showSnakeBar(
           context: context, message: 'Login failed, try again', error: true);
-
     }
   }
 }
