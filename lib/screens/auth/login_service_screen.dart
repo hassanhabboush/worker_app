@@ -584,6 +584,9 @@ class _LoginServiceScreenState extends State<LoginServiceScreen>
   bool checkeData() {
     if (_emailTextController.text.isNotEmpty &&
         _passwordTextController.text.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, '/main_screen');
+      showSnakeBar(
+          context: context, message: 'تسجيل دخول المستخدم بنجاح', error: false);
       return true;
     }
     return false;
